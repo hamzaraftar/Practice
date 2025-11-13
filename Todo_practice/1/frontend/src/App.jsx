@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
@@ -8,8 +8,16 @@ function App() {
     <>
       <div className="min-w-[333px]">
         <div className="bg-gray-100 min-h-screen flex flex-col items-start p-4">
-          <h1 className="text-2xl font-bold text-gray-600">ToDo</h1>
-          <div className="mt-4 w-full  bg-white p-4 rounded shadow flex justify-between items-center ">
+          <div className="w-full flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-gray-600">ToDo</h1>
+            <div>
+              <button className="mx-2 font-semibold ">Login</button>
+              <button className="text-white bg-gray-600 hover:bg-gray-700 transition px-2 cursor-pointer py-1 rounded-md">
+                Logout
+              </button>
+            </div>
+          </div>
+          <div className="mt-6 w-full  bg-white p-4 rounded shadow flex justify-between items-center ">
             <input
               className="outline-none text-lg"
               type="text"
