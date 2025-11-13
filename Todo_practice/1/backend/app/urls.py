@@ -11,8 +11,8 @@ urlpatterns = [
     path('api/user/details/', UserDetailView.as_view(), name='user-details'),
     
     # JWT token obtain and refresh
-    path('api/user/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('user/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     #for  Todos detail, update, delete
     path('todos/',TodoListCreateView.as_view(), name='todo-list-create'),

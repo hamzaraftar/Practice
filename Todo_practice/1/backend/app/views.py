@@ -25,10 +25,10 @@ class TodoListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Todo.objects.filter(user=self.request.user)
+        return Todo.objects.filter(author=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        serializer.save(author=self.request.user)
 
 # for Todo Detail, Update, Delete
 class TodoDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -37,4 +37,4 @@ class TodoDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         author = self.request.user
-        return Todo.objects.filter(user=author) 
+        return Todo.objects.filter(author=author) 
