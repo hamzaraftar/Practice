@@ -19,6 +19,7 @@ export default function ProtectedRoutes({ children }) {
       });
       if (res.status === 200) {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
+
         setIsAuthorized(true);
       } else {
         setIsAuthorized(false);
@@ -29,7 +30,7 @@ export default function ProtectedRoutes({ children }) {
     }
   };
 
-  //check for refresh token
+  //check for expire of access and get new one
   const auth = async () => {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {

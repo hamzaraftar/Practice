@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import NoteFound from "./pages/NoteFound";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
-function logOut() {
+function Logout() {
   localStorage.clear();
   return <Navigate to="/login" />;
 }
@@ -29,7 +29,9 @@ function App() {
               </ProtectedRoutes>
             }
           />
+
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterAndLogout />} />
           <Route path="*" element={<NoteFound />} />
         </Routes>
