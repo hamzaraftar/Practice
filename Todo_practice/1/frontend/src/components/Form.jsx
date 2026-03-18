@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import LoadingIndicator from "./LoadingIndicator";
 
 export default function Form({ route, method }) {
-  const [data, setData] = useState({ username: "", password: "" });
+  const [data, setData] = useState({ username: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -36,54 +36,81 @@ export default function Form({ route, method }) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-white to-slate-100 p-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-2xl shadow-md w-full max-w-sm"
+        className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 w-full max-w-md transition-all duration-300"
       >
-        <h1 className="text-2xl font-semibold text-gray-700 mb-4 text-center">
-          {name}
-        </h1>
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-slate-800 tracking-tight mb-2">
+            {name}
+          </h1>
+          <p className="text-sm text-slate-500">
+            {method === "login" ? "Welcome back! Please enter your details." : "Create an account to get started."}
+          </p>
+        </div>
 
-        <input
-          className="w-full p-3 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
-          type="text"
-          value={data.username}
-          onChange={(e) => setData({ ...data, username: e.target.value })}
-          placeholder="Username"
-        />
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Username</label>
+            <input
+              className="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all text-slate-900"
+              type="text"
+              value={data.username}
+              onChange={(e) => setData({ ...data, username: e.target.value })}
+              placeholder="Enter your username"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
+            <input
+              className="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all text-slate-900"
+              type="text"
+              value={data.email}
+              onChange={(e) => setData({ ...data, email: e.target.value })}
+              placeholder="Enter your email"
+            />
+          </div>
 
-        <input
-          className="w-full p-3 border rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
-          type="password"
-          value={data.password}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-          placeholder="Password"
-        />
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+            <input
+              className="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all text-slate-900"
+              type="password"
+              value={data.password}
+              onChange={(e) => setData({ ...data, password: e.target.value })}
+              placeholder="••••••••"
+            />
+          </div>
+        </div>
 
         {loading && (
-          <div className="flex justify-center my-2">
+          <div className="flex justify-center my-4">
             <LoadingIndicator />
           </div>
         )}
 
-        <span className="text-gray-600">
-          {method === "login"
-            ? "Don't have an account? "
-            : "Already have an account? "}
-          <Link
-            to={method === "login" ? "/register" : "/login"}
-            className="text-blue-500 font-medium hover:underline"
-          >
-            {method === "login" ? "Register" : "Login"}
-          </Link>
-        </span>
         <button
-          className={`w-full mt-2 bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition duration-200  ${loading && "cursor-not-allowed opacity-50"}`}
+          className={`w-full mt-6 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ${loading ? "cursor-not-allowed opacity-70" : ""}`}
           type="submit"
+          disabled={loading}
         >
-          {name}
+          {loading ? "Please wait..." : name}
         </button>
+
+        <div className="mt-6 text-center">
+          <span className="text-sm text-slate-500">
+            {method === "login"
+              ? "Don't have an account? "
+              : "Already have an account? "}
+            <Link
+              to={method === "login" ? "/register" : "/login"}
+              className="text-indigo-600 font-semibold hover:text-indigo-500 hover:underline transition-colors"
+            >
+              {method === "login" ? "Register" : "Login"}
+            </Link>
+          </span>
+        </div>
       </form>
     </div>
   );
