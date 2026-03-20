@@ -36,7 +36,7 @@ export default function Form({ route, method }) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-white to-slate-100 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-indigo-50 via-white to-slate-100 p-4">
       <form
         onSubmit={handleSubmit}
         className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 w-full max-w-md transition-all duration-300"
@@ -91,7 +91,7 @@ export default function Form({ route, method }) {
         )}
 
         <button
-          className={`w-full mt-6 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ${loading ? "cursor-not-allowed opacity-70" : ""}`}
+          className={`w-full mt-6 bg-linear-to-r from-indigo-600 to-violet-600 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ${loading ? "cursor-not-allowed opacity-70" : ""}`}
           type="submit"
           disabled={loading}
         >

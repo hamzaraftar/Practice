@@ -17,5 +17,5 @@ class UserSerializer(serializers.ModelSerializer):
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
-        fields = ["id", "title", "content"]
+        fields = ["id", "title", "description"]
         extra_kwargs = {"author": {"read_only": True}}
